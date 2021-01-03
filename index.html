@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Quotes</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="overlay">
+            <div class="title">
+                <h1 class="heading">
+                    Quote Quench
+                </h1>
+            </div>
+            <!-- <img class="author-image"
+                src="https://www.visme.co/wp-content/themes/visme/images/make-presentation/laptop_girl.svg"
+                data-src="https://www.visme.co/wp-content/themes/visme/images/make-presentation/laptop_girl.svg"
+                alt="Online Presentation Software"> -->
+            <div class="quote-control">
+                <div class="search-quote">
+                    <!-- <label for="search-quote">Search Quote</label> -->
+                    <input type="text" name="search-quote" id="search-quote"
+                        placeholder="Search Quote or Type Quote Author">
+                </div>
+                <div class="flex">
+                    <div class="quote-query">
+                        <!-- <label for="quote-genre">Quote Genre</label> -->
+                        <select name="genre" id="quote-genre">
+                            <option value="Select Quote Genre" disabled selected>Select Quote Genre</option>
+                            <option value="Love">Love</option>
+                            <option value="Life">Life</option>
+                            <option value="Work">Work</option>
+                            <option value="Spiritual">Spiritual</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
+                    <div class="quote-number">
+                        <!-- <label for="quote-number">Number of Quotes</label> -->
+                        <input type="number" name="quote-number" id="quote-number" min="1" value="1">
+                    </div>
+                </div>
+            </div>
+            <div class="quote-content">
+
+            </div>
+            <ul class="control-btn">
+                <!-- <li><button class="preveous">P</button></li> -->
+                <li><button class="next">Next</button></li>
+            </ul>
+        </div>
+
+    </div>
+    <script type="module" src="./js/quoteDB.js"></script>
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

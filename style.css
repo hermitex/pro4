@@ -1,0 +1,141 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  transition: background 1.5s ease-in-out;
+  background-color: rgb(17, 68, 102);
+}
+
+.overlay {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.title {
+  padding: 2rem;
+}
+.heading {
+  font-size: 3rem;
+  color: #ffffff;
+}
+input,
+select {
+  border: 0.01rem blue solid;
+  border-radius: 30rem;
+  padding: 0.3rem;
+  outline: none;
+  margin: 1rem;
+}
+section option {
+  cursor: pointer;
+}
+input::placeholder {
+  text-align: center;
+}
+.search-quote input {
+  width: 50vw;
+  padding: 1rem;
+  text-align: center;
+}
+
+.flex {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+.quote-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 60vw;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  background: #d6cbcb;
+  padding: 2rem;
+  min-height: 10rem;
+  overflow-y: auto;
+  max-height: auto;
+  border-radius: 1rem;
+}
+
+.control-btn {
+  list-style: none;
+  display: flex;
+
+  width: 100%;
+  bottom: 0rem;
+}
+.control-btn li {
+  margin: 2rem auto;
+}
+.control-btn li button {
+  padding-right: 3rem;
+  padding-left: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  border-radius: 3rem;
+  text-emphasis: bold;
+  outline: none;
+}
+.control-btn li button:hover {
+  opacity: 0.9;
+}
+
+blockquote {
+  position: relative;
+}
+footer {
+  position: absolute;
+  right: 0;
+  font-style: oblique;
+  margin-top: 0.5rem;
+  margin-bottom: 0.9rem;
+  font-size: small;
+}
+
+@media screen and (max-width: 768px) {
+  .quote-content {
+    width: 80vw;
+    font-size: medium;
+    line-height: 2rem;
+  }
+
+  .control-btn {
+    justify-content: space-around;
+  }
+  .heading {
+    font-size: 2rem;
+  }
+  .search-quote input {
+    width: 80vw;
+  }
+  .search-quote {
+    margin: auto;
+  }
+  .quote-number input,
+  .quote-query input {
+    width: 5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  blockquote {
+    font-size: large;
+  }
+}
