@@ -48,6 +48,17 @@ input::placeholder {
   padding: 1rem;
   text-align: center;
 }
+.header {
+  text-align: center;
+}
+.quote-header {
+  /* position: fixed; */
+  color: #ffffff;
+  font-size: small;
+  text-transform: capitalize;
+  text-decoration: underline;
+  padding-top: 1rem;
+}
 
 .flex {
   display: inline-flex;
@@ -55,6 +66,46 @@ input::placeholder {
   justify-content: space-around;
   width: 100%;
 }
+
+.quote-query,
+.quote-number {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+}
+.tool-tip-info {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555555;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.3rem 0;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  right: 35%;
+  opacity: 0;
+  transition: opacity 0.25s;
+  font-size: small;
+}
+.tool-tip-info::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -0.5rem;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: #555555 transparent transparent transparent;
+}
+
+.quote-query:hover .tool-tip-info,
+.quote-number:hover .tool-tip-info {
+  visibility: visible;
+  opacity: 1;
+}
+
 .quote-content {
   display: flex;
   flex-direction: column;
@@ -108,7 +159,10 @@ footer {
   margin-bottom: 0.9rem;
   font-size: small;
 }
-
+.warning {
+  font-size: 2rem;
+  color: rgb(255, 0, 76);
+}
 @media screen and (max-width: 768px) {
   .quote-content {
     width: 80vw;
@@ -137,5 +191,8 @@ footer {
 @media screen and (max-width: 375px) {
   blockquote {
     font-size: large;
+  }
+  .quote-content {
+    padding: 1.2rem;
   }
 }

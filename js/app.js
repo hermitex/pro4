@@ -9,23 +9,27 @@ const body = document.querySelector("body");
 const quoteGenre = document.querySelector("#quote-genre");
 const authorImage = document.querySelector(".author-image");
 const options = document.querySelector("select");
+const header = document.querySelector(".header");
+let genre = "";
 
-const getQuote = (option, id) => {
+quoteGenre.addEventListener("change", (e) => {
+  genre = e.target.value.toLowerCase();
+  getQuote();
+});
+
+const getQuote = () => {
   body.style.background = `#${Math.floor(Math.random() * 255)}`;
-  if (option === "Select Quote Genre") {
-    console.log(option);
+  let id = Math.floor(Math.random() * QUOTES.length);
+  if (options.value === "Select Quote Genre" || options.value === "Random") {
+    header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
     outputDiv.innerHTML = `
-      <blockquote> 
-          ${QUOTES[id].quote}
-          <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
-      </blockquote>`;
+     
+        <blockquote> 
+            ${QUOTES[id].quote}
+            <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
+        </blockquote>`;
   } else {
-    console.log(QUOTES[id]);
-    outputDiv.innerHTML = `
-      <blockquote> 
-          ${QUOTES[id].quote}
-          <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
-      </blockquote>`;
+    displayQuotesFromThisGenre();
   }
 };
 
@@ -34,34 +38,47 @@ const displayMultipleQuotes = (num, quotes) => {
   while (num && num <= 4) {
     let id = Math.floor(Math.random() * quotes.length);
     output += `
-    <blockquote  style="text-align: left"> 
-    ${QUOTES[id].quote}
-    <span  style=" font-style: oblique; font-size:small">-${QUOTES[id].authorFirstName}</span>
-</blockquote> <br/> <hr/>`;
+    <blockquote  style="text-align: center"> 
+      ${QUOTES[id].quote}
+      <span  style=" font-style: oblique; font-size:small; display: block;">-${QUOTES[id].authorFirstName}</span>
+    </blockquote> <br/> <hr/>`;
     num--;
     outputDiv.innerHTML = `${output}`;
     // <button type='button' id="generate-quote" class="btn btn-light p-3 d-block w-auto m-auto">Back</button>
   }
 };
 
-const displayQuotesFromThisGenre = (genre) => {
-  let randomNumber = Math.floor(Math.random() * QUOTES.length);
-  getQuote(genre, randomNumber);
+const displayQuotesFromThisGenre = () => {
+  const quotes = QUOTES.filter((quote) => quote.genre === genre);
+
+  let id = Math.floor(Math.random() * quotes.length);
+
+  if (quotes.length > 0) {
+    header.innerHTML = ` <h1 class='quote-header'>${quotes[id].genre}  quotes(${quotes.length})</h1>  `;
+    outputDiv.innerHTML = `
+  
+    <blockquote> 
+        ${quotes[id].quote}
+        <footer class="quote-author" >-${quotes[id].authorFirstName}</footer>
+        
+        </blockquote>`;
+  } else {
+    outputDiv.innerHTML = `
+    <blockquote class='warning'> 
+        This genre does not have quotes yet
+    </blockquote>`;
+  }
 };
 
 window.addEventListener("load", (e) => {
+  body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let randomNumber = Math.floor(Math.random() * QUOTES.length);
-  getQuote(e, randomNumber);
+  getQuote(randomNumber);
 });
 quoteNumber.addEventListener("change", (e) =>
   displayMultipleQuotes(parseInt(e.target.value), QUOTES)
 );
 
 nextButton.addEventListener("click", (e) => {
-  let randomNumber = Math.floor(Math.random() * QUOTES.length);
-  getQuote(e, randomNumber);
-});
-
-quoteGenre.addEventListener("change", (e) => {
-  displayQuotesFromThisGenre(e.target.value.toLowerCase());
+  getQuote();
 });
