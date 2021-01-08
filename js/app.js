@@ -10,6 +10,7 @@ const quoteGenre = document.querySelector("#quote-genre");
 const authorImage = document.querySelector(".author-image");
 const options = document.querySelector("select");
 const header = document.querySelector(".header");
+const dataList = document.querySelector("#options");
 let genre = "";
 
 quoteGenre.addEventListener("change", (e) => {
@@ -21,13 +22,17 @@ const getQuote = () => {
   body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let id = Math.floor(Math.random() * QUOTES.length);
   if (options.value === "Select Quote Genre" || options.value === "Random") {
-    header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
-    outputDiv.innerHTML = `
+    if (search.value !== " ") {
+      displayQuotesFromThisAuthor();
+    } else if (search.value === " ") {
+      header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
+      outputDiv.innerHTML = `
      
         <blockquote> 
             ${QUOTES[id].quote}
             <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
         </blockquote>`;
+    }
   } else {
     displayQuotesFromThisGenre();
   }
@@ -70,15 +75,70 @@ const displayQuotesFromThisGenre = () => {
   }
 };
 
+const findQuotesFromAuthor = (author) => {
+  const quotesFromAuthor = QUOTES.filter(
+    (quote) =>
+      quote.authorFirstName === author.split(" ")[0] ||
+      quote.authorSecondName === author.split(" ")[1]
+  );
+  return quotesFromAuthor;
+};
+
+const displayQuotesFromThisAuthor = () => {
+  let quotes = findQuotesFromAuthor(search.value);
+  console.log(quotes);
+  let id = Math.floor(Math.random() * quotes.length);
+
+  if (quotes.length > 0) {
+    header.innerHTML = ` <h1 class='quote-header'>${quotes[id].authorFirstName} ${quotes[id].authorSecondName}(${quotes.length} quotes)</h1>  `;
+    outputDiv.innerHTML = `
+  
+    <blockquote> 
+        ${quotes[id].quote}
+        <footer class="quote-author" >-${quotes[id].authorFirstName}</footer>
+        
+        </blockquote>`;
+  } else {
+    header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
+    let id = Math.floor(Math.random() * QUOTES.length);
+    outputDiv.innerHTML = `   
+      <blockquote> 
+          ${QUOTES[id].quote}
+          <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
+      </blockquote>`;
+  }
+};
+
 window.addEventListener("load", (e) => {
   body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let randomNumber = Math.floor(Math.random() * QUOTES.length);
+  const authorNames = QUOTES.map(
+    (quote) =>
+      `${quote.authorFirstName.trim()} ${
+        quote.authorSecondName ? quote.authorSecondName.trim() : ""
+      }`
+  ).sort();
+  let uniqueAuthorNames = [...new Set(authorNames)];
+  instertAuthorsDatalist(uniqueAuthorNames);
   getQuote(randomNumber);
 });
-quoteNumber.addEventListener("change", (e) =>
-  displayMultipleQuotes(parseInt(e.target.value), QUOTES)
-);
+
+const instertAuthorsDatalist = (authors) => {
+  let authorList = "";
+  authors.forEach((author) => {
+    authorList += `<option value="${author}">${author}</option>`;
+  });
+  dataList.innerHTML = authorList;
+};
+
+quoteNumber.addEventListener("change", (e) => {
+  displayMultipleQuotes(parseInt(e.target.value), QUOTES);
+});
 
 nextButton.addEventListener("click", (e) => {
   getQuote();
+});
+
+search.addEventListener("keyup", (e) => {
+  findQuotesFromAuthor(e.target.value);
 });
