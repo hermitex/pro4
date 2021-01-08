@@ -56,7 +56,7 @@ input::placeholder {
   color: #ffffff;
   font-size: small;
   text-transform: capitalize;
-  text-decoration: underline;
+  font-style: italic;
   padding-top: 1rem;
 }
 
