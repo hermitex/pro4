@@ -539,8 +539,8 @@ export const QUOTES = [
     img: "./images/personalities/mahatma-gandhi.jpg",
     quote:
       "It is the mark of an educated mind to be able to entertain a thought without accepting it.",
-    authorFirstName: "Aristotle",
-    authorSecondName: " ",
+    authorFirstName: "Greek",
+    authorSecondName: "Aristotle",
     genre: "wisdom",
   },
   {
@@ -657,7 +657,7 @@ export const QUOTES = [
     img: "./images/personalities/mahatma-gandhi.jpg",
     quote: "The only true wisdom is knowing that you know nothing.",
     authorFirstName: "Socrates",
-    authorSecondName: " ",
+    authorSecondName: "Son of Socrates",
     genre: "wisdom",
   },
   {

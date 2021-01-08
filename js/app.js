@@ -78,11 +78,15 @@ const displayQuotesFromThisGenre = () => {
 const findQuotesFromAuthor = (author) => {
   const quotesFromAuthor = QUOTES.filter(
     (quote) =>
-      `${quote.authorFirstName} ${quote.authorSecondName}` ===
-      `${author.split(" ")[0]} ${author.split(" ")[1]}`
+      `${quote.authorFirstName} ${
+        quote.authorSecondName ? quote.authorSecondName : ""
+      }` === author
   );
+
   return quotesFromAuthor;
 };
+
+console.log(QUOTES);
 
 const displayQuotesFromThisAuthor = () => {
   let quotes = findQuotesFromAuthor(search.value);
