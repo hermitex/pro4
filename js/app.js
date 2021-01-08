@@ -40,7 +40,7 @@ const getQuote = () => {
 
 const displayMultipleQuotes = (num, quotes) => {
   let output = "";
-  while (num && num <= 4) {
+  while (num && num <= 3) {
     let id = Math.floor(Math.random() * quotes.length);
     output += `
     <blockquote  style="text-align: center"> 
