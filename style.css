@@ -47,6 +47,7 @@ input::placeholder {
   width: 50vw;
   padding: 1rem;
   text-align: center;
+  cursor: pointer;
 }
 .header {
   text-align: center;
@@ -117,18 +118,23 @@ input::placeholder {
   line-height: 1.5rem;
   font-size: 1.2rem;
   background: #d6cbcb;
-  padding: 1.5rem;
+  padding: 1.8rem;
   min-height: 10rem;
+  height: 100%;
   overflow-y: auto;
   max-height: auto;
   border-radius: 1rem;
-  border: 0.5rem groove;
+  border: 0.2rem groove;
+}
+
+.quote-content::-webkit-scrollbar {
+  display: none;
+  /* border-radius: 3rem; */
 }
 
 .control-btn {
   list-style: none;
   display: flex;
-
   width: 100%;
   bottom: 0rem;
 }
@@ -144,6 +150,8 @@ input::placeholder {
   border-radius: 3rem;
   text-emphasis: bold;
   outline: none;
+  cursor: pointer;
+  touch-action: pinch-zoom;
 }
 .control-btn li button:hover {
   opacity: 0.9;
