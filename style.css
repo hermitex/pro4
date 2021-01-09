@@ -11,6 +11,7 @@ body {
   width: 100vw;
   transition: background 1.5s ease-in-out;
   background-color: rgb(17, 68, 102);
+  overflow-x: hidden;
 }
 
 .overlay {
