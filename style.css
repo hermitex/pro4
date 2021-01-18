@@ -11,12 +11,12 @@ body {
   width: 100vw;
   transition: background 1.5s ease-in-out;
   background-color: rgb(17, 68, 102);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .overlay {
-  height: 100vh;
-  position: relative;
+  /* height: 100vh; */
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;

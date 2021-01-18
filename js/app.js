@@ -40,7 +40,7 @@ const getQuote = () => {
 
 const displayMultipleQuotes = (num, quotes) => {
   let output = "";
-  while (num && num <= 3) {
+  while (num && num <= 4) {
     let id = Math.floor(Math.random() * quotes.length);
     output += `
     <blockquote  style="text-align: center"> 
@@ -123,7 +123,7 @@ window.addEventListener("load", (e) => {
       }`
   ).sort();
   let uniqueAuthorNames = [...new Set(authorNames)];
-  instertAuthorsDatalist(uniqueAuthorNames);
+
   getQuote(randomNumber);
 });
 
