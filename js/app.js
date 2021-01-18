@@ -30,7 +30,7 @@ const getQuote = () => {
      
         <blockquote> 
             ${QUOTES[id].quote}
-            <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
+            <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
         </blockquote>`;
     }
   } else {
@@ -45,7 +45,7 @@ const displayMultipleQuotes = (num, quotes) => {
     output += `
     <blockquote  style="text-align: center"> 
       ${QUOTES[id].quote}
-      <span  style=" font-style: oblique; font-size:small; display: block;">-${QUOTES[id].authorFirstName}</span>
+      <span  style=" font-style: oblique; font-size:small; display: block;">-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</span>
     </blockquote> <br/> <hr/>`;
     num--;
     outputDiv.innerHTML = `${output}`;
@@ -64,7 +64,7 @@ const displayQuotesFromThisGenre = () => {
   
     <blockquote> 
         ${quotes[id].quote}
-        <footer class="quote-author" >-${quotes[id].authorFirstName}</footer>
+        <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
         
         </blockquote>`;
   } else {
@@ -99,7 +99,7 @@ const displayQuotesFromThisAuthor = () => {
   
     <blockquote> 
         ${quotes[id].quote}
-        <footer class="quote-author" >-${quotes[id].authorFirstName}</footer>
+        <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
         
         </blockquote>`;
   } else {
@@ -108,7 +108,7 @@ const displayQuotesFromThisAuthor = () => {
     outputDiv.innerHTML = `   
       <blockquote> 
           ${QUOTES[id].quote}
-          <footer class="quote-author" >-${QUOTES[id].authorFirstName}</footer>
+          <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
       </blockquote>`;
   }
 };
