@@ -11,7 +11,7 @@ body {
   width: 100vw;
   transition: background 1.5s ease-in-out;
   background-color: rgb(17, 68, 102);
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 .overlay {
@@ -120,9 +120,9 @@ input::placeholder {
   font-size: 1.2rem;
   background: #d6cbcb;
   padding: 1.8rem;
-  min-height: 10rem;
+  min-height: 15rem;
   height: 100%;
-  overflow-y: auto;
+
   max-height: auto;
   border-radius: 1rem;
   border: 0.2rem groove;
