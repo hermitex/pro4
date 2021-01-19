@@ -40,6 +40,7 @@ const getQuote = () => {
 
 const displayMultipleQuotes = (num, quotes) => {
   let output = "";
+
   while (num && num <= 4) {
     let id = Math.floor(Math.random() * quotes.length);
     output += `
@@ -136,7 +137,12 @@ const instertAuthorsDatalist = (authors) => {
 };
 
 quoteNumber.addEventListener("change", (e) => {
-  displayMultipleQuotes(parseInt(e.target.value), QUOTES);
+  if (+e.target.value > 4) {
+    confirm("You can read up to 4 quotes at a time");
+    e.target.value = 4;
+  } else {
+    displayMultipleQuotes(parseInt(e.target.value), QUOTES);
+  }
 });
 
 nextButton.addEventListener("click", (e) => {

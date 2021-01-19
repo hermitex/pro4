@@ -7,16 +7,18 @@
 body {
   font-size: medium;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 100vh;
   width: 100vw;
   transition: background 1.5s ease-in-out;
   background-color: rgb(17, 68, 102);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .overlay {
-  /* height: 100vh; */
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;
