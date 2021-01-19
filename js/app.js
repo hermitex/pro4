@@ -147,6 +147,13 @@ nextButton.addEventListener("click", (e) => {
   getQuote();
 });
 
+window.addEventListener("keydown", (e) => {
+  console.log(e);
+  if (e.code === "KeyN" || e.code === "ArrowRight" || e.code === "ArrowDown") {
+    getQuote();
+  }
+});
+
 search.addEventListener("keyup", (e) => {
   findQuotesFromAuthor(e.target.value);
 });
