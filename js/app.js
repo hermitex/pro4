@@ -1,16 +1,13 @@
 import { QUOTES } from "../js/quoteDB.js";
 
-const preveousButton = document.querySelector(".preveous");
 const nextButton = document.querySelector(".next");
 const outputDiv = document.querySelector(".quote-content");
 const search = document.querySelector("#search-quote");
 const quoteNumber = document.querySelector("#quote-number");
 const body = document.querySelector("body");
 const quoteGenre = document.querySelector("#quote-genre");
-const authorImage = document.querySelector(".author-image");
 const options = document.querySelector("select");
 const header = document.querySelector(".header");
-const dataList = document.querySelector("#options");
 let genre = "";
 
 quoteGenre.addEventListener("change", (e) => {
