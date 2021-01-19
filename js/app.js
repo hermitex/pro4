@@ -87,8 +87,6 @@ const findQuotesFromAuthor = (author) => {
   return quotesFromAuthor;
 };
 
-console.log(QUOTES);
-
 const displayQuotesFromThisAuthor = () => {
   let quotes = findQuotesFromAuthor(search.value);
   console.log(quotes);
@@ -100,7 +98,7 @@ const displayQuotesFromThisAuthor = () => {
   
     <blockquote> 
         ${quotes[id].quote}
-        <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
+        <footer class="quote-author" >-${quotes[id].authorFirstName} ${quotes[id].authorSecondName}</footer>
         
         </blockquote>`;
   } else {
