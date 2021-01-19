@@ -25,10 +25,10 @@ const getQuote = () => {
     if (search.value !== " ") {
       displayQuotesFromThisAuthor();
     } else if (search.value === " ") {
-      header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
-      outputDiv.innerHTML = `
-     
-        <blockquote> 
+      header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1>`;
+      outputDiv.style.backgroundImage = `url(${QUOTES[id].img})`;
+      outputDiv.innerHTML = `     
+        <blockquote>            
             ${QUOTES[id].quote}
             <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
         </blockquote>`;
@@ -40,17 +40,20 @@ const getQuote = () => {
 
 const displayMultipleQuotes = (num, quotes) => {
   let output = "";
-
+  {
+    /* <img src='${QUOTES[id].img}' alt="No">   */
+  }
   while (num && num <= 4) {
     let id = Math.floor(Math.random() * quotes.length);
+
     output += `
+     
     <blockquote  style="text-align: center"> 
       ${QUOTES[id].quote}
       <span  style=" font-style: oblique; font-size:small; display: block;">-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</span>
     </blockquote> <br/> <hr/>`;
     num--;
     outputDiv.innerHTML = `${output}`;
-    // <button type='button' id="generate-quote" class="btn btn-light p-3 d-block w-auto m-auto">Back</button>
   }
 };
 
@@ -77,19 +80,20 @@ const displayQuotesFromThisGenre = () => {
 };
 
 const findQuotesFromAuthor = (author) => {
-  const quotesFromAuthor = QUOTES.filter(
-    (quote) =>
-      `${quote.authorFirstName} ${
-        quote.authorSecondName ? quote.authorSecondName : ""
-      }` === author
-  );
+  const quotesFromAuthor = QUOTES.filter((quote) => {
+    if (
+      quote.authorFirstName.toLowerCase() === author.toLowerCase() ||
+      quote.authorSecondName.toLowerCase() === author.toLowerCase()
+    )
+      return author;
+  });
 
   return quotesFromAuthor;
 };
 
 const displayQuotesFromThisAuthor = () => {
   let quotes = findQuotesFromAuthor(search.value);
-  console.log(quotes);
+
   let id = Math.floor(Math.random() * quotes.length);
 
   if (quotes.length > 0) {
@@ -115,24 +119,8 @@ const displayQuotesFromThisAuthor = () => {
 window.addEventListener("load", (e) => {
   body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let randomNumber = Math.floor(Math.random() * QUOTES.length);
-  const authorNames = QUOTES.map(
-    (quote) =>
-      `${quote.authorFirstName.trim()} ${
-        quote.authorSecondName ? quote.authorSecondName.trim() : ""
-      }`
-  ).sort();
-  let uniqueAuthorNames = [...new Set(authorNames)];
-
   getQuote(randomNumber);
 });
-
-const instertAuthorsDatalist = (authors) => {
-  let authorList = "";
-  authors.forEach((author) => {
-    authorList += `<option value="${author}">${author}</option>`;
-  });
-  dataList.innerHTML = authorList;
-};
 
 quoteNumber.addEventListener("change", (e) => {
   if (+e.target.value > 4) {
@@ -148,8 +136,7 @@ nextButton.addEventListener("click", (e) => {
 });
 
 window.addEventListener("keydown", (e) => {
-  console.log(e);
-  if (e.code === "KeyN" || e.code === "ArrowRight" || e.code === "ArrowDown") {
+  if (e.code === "KeyN" || e.code === "ArrowRight") {
     getQuote();
   }
 });

@@ -18,6 +18,13 @@ body {
   align-content: center;
 }
 
+img {
+  /* width: 5rem; */
+  height: 5rem;
+  border-radius: 50rem;
+  opacity: 0.7;
+}
+
 .overlay {
   display: flex;
   flex-direction: column;
