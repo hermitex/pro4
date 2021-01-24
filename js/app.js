@@ -11,19 +11,20 @@ const header = document.querySelector(".header");
 let genre = "";
 
 quoteGenre.addEventListener("change", (e) => {
-  genre = e.target.value.toLowerCase();
-  getQuote();
+  genre = e.target.value.toLowerCase(); //Get quote genre to be used in a different function
+  getQuote(); //Generate a new random quote imediately the quote genre chnages
 });
 
 const getQuote = () => {
-  body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let id = Math.floor(Math.random() * QUOTES.length);
   if (options.value === "Select Quote Genre" || options.value === "Random") {
-    if (search.value !== " ") {
+    if (search.value) {
+      body.style.background = `#${Math.floor(Math.random() * 255)}`;
+      outputDiv.style.backgroundImage = ``;
       displayQuotesFromThisAuthor();
-    } else if (search.value === " ") {
+    } else if (search.value === "") {
+      body.style.background = `#${Math.floor(Math.random() * 255)}`;
       header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1>`;
-      outputDiv.style.backgroundImage = `url(${QUOTES[id].img})`;
       outputDiv.innerHTML = `     
         <blockquote>            
             ${QUOTES[id].quote}
@@ -31,15 +32,13 @@ const getQuote = () => {
         </blockquote>`;
     }
   } else {
+    outputDiv.style.backgroundImage = ``;
     displayQuotesFromThisGenre();
   }
 };
 
 const displayMultipleQuotes = (num, quotes) => {
   let output = "";
-  {
-    /* <img src='${QUOTES[id].img}' alt="No">   */
-  }
   while (num && num <= 4) {
     let id = Math.floor(Math.random() * quotes.length);
 
@@ -60,9 +59,9 @@ const displayQuotesFromThisGenre = () => {
   let id = Math.floor(Math.random() * quotes.length);
 
   if (quotes.length > 0) {
+    body.style.background = `#${Math.floor(Math.random() * 255)}`;
     header.innerHTML = ` <h1 class='quote-header'>${quotes[id].genre}  quotes(${quotes.length})</h1>  `;
-    outputDiv.innerHTML = `
-  
+    outputDiv.innerHTML = `  
     <blockquote> 
         ${quotes[id].quote}
         <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
@@ -79,8 +78,8 @@ const displayQuotesFromThisGenre = () => {
 const findQuotesFromAuthor = (author) => {
   const quotesFromAuthor = QUOTES.filter((quote) => {
     if (
-      quote.authorFirstName.toLowerCase() === author.toLowerCase() ||
-      quote.authorSecondName.toLowerCase() === author.toLowerCase()
+      quote.authorFirstName.toLowerCase() === author ||
+      quote.authorSecondName.toLowerCase() === author
     )
       return author;
   });
@@ -89,27 +88,24 @@ const findQuotesFromAuthor = (author) => {
 };
 
 const displayQuotesFromThisAuthor = () => {
-  let quotes = findQuotesFromAuthor(search.value);
-
+  let quotes = findQuotesFromAuthor(search.value.toLowerCase());
   let id = Math.floor(Math.random() * quotes.length);
-
   if (quotes.length > 0) {
+    body.style.background = `#${Math.floor(Math.random() * 255)}`;
     header.innerHTML = ` <h1 class='quote-header'>${quotes[id].authorFirstName} ${quotes[id].authorSecondName}(${quotes.length} quotes)</h1>  `;
-    outputDiv.innerHTML = `
-  
+    outputDiv.innerHTML = `  
     <blockquote> 
-        ${quotes[id].quote}
-        <footer class="quote-author" >-${quotes[id].authorFirstName} ${quotes[id].authorSecondName}</footer>
+        ${quotes[id].quote}      
+      
+           <footer class="quote-author" >-${quotes[id].authorFirstName} ${quotes[id].authorSecondName}</footer>
         
-        </blockquote>`;
+     </blockquote>`;
   } else {
-    header.innerHTML = ` <h1 class='quote-header'>Random quotes(${QUOTES.length})</h1> `;
-    let id = Math.floor(Math.random() * QUOTES.length);
     outputDiv.innerHTML = `   
-      <blockquote> 
-          ${QUOTES[id].quote}
-          <footer class="quote-author" >-${QUOTES[id].authorFirstName} ${QUOTES[id].authorSecondName}</footer>
+      <blockquote style='font-style: italic;' class='warning'> 
+        <span style='text-decoration: underline; text-transform: capitalize'> ${search.value}</span> does not have any quotes yet
       </blockquote>`;
+    search.value = "";
   }
 };
 
