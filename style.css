@@ -178,9 +178,16 @@ footer {
   margin-top: 0.5rem;
   margin-bottom: 0.9rem;
   font-size: small;
+  transition: all 1s ease;
+  padding: 0.25rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  border-radius: 0.1rem;
 }
 footer:hover {
   cursor: pointer;
+  background-color: #272525;
+  color: #ffffff;
 }
 .warning {
   font-size: 2rem;

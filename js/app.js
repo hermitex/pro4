@@ -109,6 +109,10 @@ const displayQuotesFromThisAuthor = () => {
   }
 };
 
+search.addEventListener("onblur", (e) => {
+  console.log(e.target.value);
+});
+
 window.addEventListener("load", (e) => {
   body.style.background = `#${Math.floor(Math.random() * 255)}`;
   let randomNumber = Math.floor(Math.random() * QUOTES.length);
